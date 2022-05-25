@@ -43,7 +43,8 @@ this.products=productServcie.getProducts();
 
        let product:Product={
         productName:(<HTMLInputElement>document.getElementById("productName")).value,
-        productPrice:parseInt((<HTMLInputElement>document.getElementById("price")).value)
+        productPrice:parseInt((<HTMLInputElement>document.getElementById("price")).value),
+        description:(<HTMLInputElement>document.getElementById("description")).value
        };
 
   
