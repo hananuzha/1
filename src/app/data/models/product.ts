@@ -3,6 +3,6 @@ export default interface Product{
     productPrice:number;
     quantity?: number ;
      description?: string ;
-     image?:string
+     image?:string | ArrayBuffer | null 
  
 }

@@ -1,24 +1,22 @@
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-
-import { AppRoutingModule } from './app-routing.module';
+import {HttpClientModule} from '@angular/common/http';
+import { AppRoutingModule,routingComponent } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { DataModule } from './data/data.module';
 import { ProductService } from './data/services/product.service';
-import { ProductComponent } from './product/product.component';
 import { TopComponent } from './top/top.component';
-
 @NgModule({
   declarations: [
     AppComponent,
-    ProductComponent,
-    TopComponent
+    routingComponent,
+    TopComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    
-    
+    FormsModule,
+    HttpClientModule
   ],
   providers: [ProductService],
   bootstrap: [AppComponent]

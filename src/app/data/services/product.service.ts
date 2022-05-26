@@ -1,11 +1,13 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import Product from '../models/product';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
-
+  private restUrl = 'http://localhost:8090/';
 
   products:Product[]=[{
     productName:"BMW",
@@ -21,10 +23,22 @@ export class ProductService {
      image:"../assets/img/GLE.png"
   },
 ]
-  constructor() { }
+
+
+  constructor(private http : HttpClient) { }
+
+  // private httpOptions = {
+  //   headers: new HttpHeaders( { 'Content-Type': 'application/json' })
+  //   };
+
   getProducts(){
     return this.products
   }
+  
+   getProductFromMysql (): Observable<any[]>{
+    return this.http.get<any[]>(`http://localhost:8080/employee`)
+    // .subscribe( (data) => console.log(data) )
+    }
 
   addproduct(product:Product){
     this.products.push(product);

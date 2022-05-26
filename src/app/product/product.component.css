@@ -5,3 +5,9 @@ form{
 button{
     margin-bottom: 20px;
 }
+.container-fluid {
+    position: relative;
+    min-height: 100vh;
+    padding-bottom: 2.5rem;    /* Footer height */
+
+}
