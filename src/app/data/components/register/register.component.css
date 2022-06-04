@@ -1,0 +1,40 @@
+form{
+    border-style: double;
+    border-color: blueviolet;
+    height: 100%;
+}
+button{
+    margin-bottom: 20px;
+    height: 10%;
+    width: 10%;
+    font-size: medium;
+
+}
+.container-fluid {
+    position: relative;
+    
+    padding-bottom: 2.5rem;    /* Footer height */
+
+}
+.card{
+    display: flex;
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
+    padding: 0!important;
+    height: 700px;
+    margin-bottom: 20px;
+    font-size: medium;
+}
+.form-label{
+    font-family:  Lucida Console;
+
+}
+.form-group{
+    height: 15%;
+    margin: 20px;
+   
+}
+input{
+    font-size: medium;
+
+
+}

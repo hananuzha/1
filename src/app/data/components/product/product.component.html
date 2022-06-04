@@ -1,0 +1,91 @@
+<section class=" p-5 text-center min-vh-100 d-flex flex-column justify-content-between">
+    <div class="container-fluid " id="main-container">
+        <!-- products -->
+        <div class="row">
+            <div *ngFor="let product of products " class="col-md-4  mb-3">
+                <div class="card" style="width:400px">
+                        <!-- <img class="card-img-top" [src]="product.image" alt="{{product.name}}"> -->
+                    <div class="card-body">
+                        <h4 class="card-title">{{product.name}}</h4>
+                        <p class="card-text">{{product.description}}</p>
+                        <a type="button" class="btn btn-primary" (click)="renderPrice($event,product)">See
+                            Price</a>
+                            <a class="btn btn-primary tooltips" (click)="openModel(product, 'edit')"  data-placement="top" data-target="updateProductModal" data-original-title="Edit"><i class="bi bi-pencil"></i> </a>
+                            <a  class="btn btn-secondary tooltips" (click)="openModel(product, 'delete')"  data-placement="top" data-original-title="Delete"><i class="bi bi-x-lg"></i></a>
+
+                    </div>
+                    <div id={{product.name}} style="display: none;" class="card-footer mt-3">
+                        <p id="card-bottom3"> </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <form #addForm="ngForm" (ngSubmit)="addProduct(addForm)">
+            <div class="mb-3 mt-3">
+                <input type="file" class="form-control" (change)="this.onFilechange($event)" id="customFile"  accept=".png,.jpge/*"/>
+                    </div>
+                <div class="mb-3 mt-3 form-group">
+                  <label for="name" class="form-label">product name:</label>
+                  <input ngModel type="text" class="form-control" id="name" placeholder="Enter product name" name="name" required>
+                </div>
+                <div class="mb-3 mt-3 form-group">
+                  <label for="price" class="form-label">price:</label>
+                  <input  ngModel type="text" class="form-control" id="price" placeholder="Enter price" name="price">
+                </div>
+                <div class="mb-3 mt-3 form-group">
+                    <label for="description" class="form-label">description:</label>
+                    <input ngModel type="text" class="form-control" id="description" placeholder="Enter description" name="description">
+                  </div>
+                <button [disabled]="addForm.invalid" type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        <!-- form to add product -->
+    </div>
+
+
+
+    <!-- Edit Modal -->
+<div class="modal fade" id="updateProductModal" tabindex="-1" role="dialog" aria-labelledby="productEditModalLabel" aria-hidden="true">
+    <!-- <div class="modal-dialog" role="document">
+       <div class="modal-content">
+          <div class="modal-header">
+             <h5 class="modal-title" id="updateProductModalLabel">Edit Product {{editProduct?.name}}</h5>
+             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+             <span aria-hidden="true">&times;</span>
+             </button>
+          </div>
+          <div class="modal-body">
+             <form #editForm="ngForm">
+                <div class="form-group">
+                   <label for="name">Name</label>
+                   <input type="text" ngModel="{{editProduct?.name}}" name="name" class="form-control" id="name" aria-describedby="emailHelp" placeholder="Name">
+                </div>
+                <div class="form-group">
+                    <label for="description" class="form-label">description:</label>
+                    <input ngModel type="text" class="form-control" id="description" placeholder="Enter description" name="description">
+                  </div>
+                <input type="hidden" ngModel="{{editProduct?.id}}" name="id" class="form-control" id="id" placeholder="Email">
+                <div class="form-group">
+                   <label for="image">Email Address</label>
+                   <input type="image" ngModel="{{editProduct?.image}}" name="image" class="form-control" id="image" placeholder="image">
+                </div>
+                <div class="form-group">
+                   <label for="productPrice">productPrice</label>
+                   <input type="text" ngModel="{{editProduct?.productPrice}}" name="productPrice" class="form-control" id="productPrice" placeholder=" productPrice">
+                </div>
+                <div class="form-group">
+                   <label for="quantity">quantity</label>
+                   <input type="text" ngModel="{{editProduct?.quantity}}" name="quantity" class="form-control" id="quantity" name="quantity" placeholder="quantity">
+                </div>
+                 -->
+                <div class="modal-footer">
+                   <button type="button" id="" data-dismiss="modal" class="btn btn-secondary">Close</button>
+                   <button  data-dismiss="modal" class="btn btn-primary" >Save changes</button>
+                </div>
+             <!-- </form>
+          </div>
+       </div> -->
+    <!-- </div> -->
+  </div>
+</section>

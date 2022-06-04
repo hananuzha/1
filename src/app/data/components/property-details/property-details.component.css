@@ -1,0 +1,26 @@
+
+.card-text{
+    font-size: 20px;
+
+}
+p{
+    color: #6f6f8a;
+    font-size: 14px;
+    font-weight: 300;
+    margin: 0;
+}
+.row{
+    margin-top: 10px;
+    box-shadow: 2px 15px 30px rgb(0 0 0 / 10%);
+
+}
+span{
+    font-family: Lucida Console;
+    font-size: 20px;
+}
+button{
+    font-size: medium;
+}
+input{
+    font-size: medium;
+}
