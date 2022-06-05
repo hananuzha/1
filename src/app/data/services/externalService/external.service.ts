@@ -33,7 +33,6 @@ export class ExternalService {
 
       
    addReservation(fromDate:string,toDate:string,propertyId:number,phoneNumber:string,reservationobject: ReservationObject){
-    localStorage.clear()
 
     
     const headers = new HttpHeaders()
