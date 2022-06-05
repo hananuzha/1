@@ -1,0 +1,97 @@
+<body>
+    <section class=" text-center">
+        <h2>Our little Reservation in the woods...</h2>
+    </section>
+    <section class="search">
+        <div class="container-fluid ">
+            <div class="row font container-search">
+                <div class="col-sm-4">
+                    <p>City</p>
+                    <select class="form-select font">
+                        <option selected>All</option>
+                        <option>chicago</option>
+                        <option>carmel</option>
+                    </select>
+                </div>
+
+                <div class="col-sm-4">
+                    <p>Reservation Date</p>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <input type="text" id="fromDates" onfocus="(this.type='date')" class="form-control font"
+                                value="" placeholder="From ">
+                        </div>
+                        <div class="col-sm-6 ">
+                            <input type="text" id="fromDates" onclick="this.type='date'" class="form-control font"
+                                value="" placeholder="To">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-4">
+                    <p>Price</p>
+                    <label for="customRange1" class="form-label" style="color:rgb(90, 11, 11);">50</label>
+                    <label for="customRange1" class="form-label"
+                        style="margin-left:80% ;color: rgb(90, 11, 11);;">500</label>
+                    <input type="range" class="form-range" min="50" max="500" id="customRange1">
+
+
+                </div>
+
+
+            </div>
+        </div>
+    </section>
+
+    <section class=" p-5 text-center min-vh-100 d-flex flex-column justify-content-between">
+        <div class="container " id="main-container">
+            <!-- products -->
+            <div class="row">
+                <div *ngFor="let property of properties " class="col-md-12 mb-3">
+                    <div class="card mb-3">
+                        <div class="row g-0">
+                            <div class="col-md-5">
+                                <img class="img-fluid rounded-start p-1" [src]="getImagePath(property.propertyImages)"
+                                    alt="{{property.name}}">
+                            </div>
+                            <div class="col-md-7">
+
+                                <div class="card-body">
+                                    <h4 class="card-title">{{property.name}} ( {{property.aliasName}} )</h4>
+                                    <h6 class="card-title">{{property.address.city}}</h6>
+                                    <div class=" row property-features">
+                                        <div class="col-" style="margin-bottom: 30px;"
+                                            *ngFor="let feature of property.propertyFeatures">
+                                            <p>{{feature.name}}</p>
+                                            <img style="width: 50px;margin-right: 10px;"
+                                                src="../../assets/img/{{feature.icon}}.png" alt="">
+                                            <span>{{feature.count}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="property-price">
+                                        <div class="price">
+                                            <button (click)="go ('/property',property.id)">
+                                                show Property</button>
+
+                                        </div>
+
+
+
+                                        <p class="card-text">{{property.description}}</p>
+
+                                        <!-- <a class="btn btn-primary tooltips" (click)="openModel(product, 'edit')"  data-placement="top" data-target="updateProductModal" data-original-title="Edit"><i class="bi bi-pencil"></i> </a>
+                            <a  class="btn btn-secondary tooltips" (click)="openModel(product, 'delete')"  data-placement="top" data-original-title="Delete"><i class="bi bi-x-lg"></i></a> -->
+
+                                    </div>
+                                </div>
+                                <div id={{property.name}} style="display: none;" class="card-footer mt-3">
+                                    <p id="card-bottom3"> </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>

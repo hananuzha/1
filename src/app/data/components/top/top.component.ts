@@ -1,3 +1,4 @@
+import { JsonpClientBackend } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -8,8 +9,13 @@ import { Component, OnInit } from '@angular/core';
 export class TopComponent implements OnInit {
 
   constructor() { }
-
+    name: string|null="";
   ngOnInit(): void {
+    if (localStorage.getItem("token") )
+    {
+        this.name= localStorage.getItem("username")
+
+    }
   }
 
 }

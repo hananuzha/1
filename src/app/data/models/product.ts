@@ -1,8 +1,9 @@
 export default interface Product{
-    productName:string;
+    id?:number;
+    name:string;
     productPrice:number;
     quantity?: number ;
      description?: string ;
-     image?:string | ArrayBuffer | null 
- 
+     propertySchedules?:string;
+
 }

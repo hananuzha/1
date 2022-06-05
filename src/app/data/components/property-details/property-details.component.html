@@ -1,0 +1,228 @@
+<div class="modal" id="exampleModal" tabindex="-1" aria-hidden="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title " style="color:red;" id="exampleModalLabel">You have to Fill these Fields First
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form #userform="ngForm" (ngSubmit)="adduser(userform)">
+
+                <div class="modal-body">
+
+                  
+
+                    <div class="mb-3 mt-3 form-group">
+                        <label for="phoneNumber" class="form-label">Phone<span style="color:red ;">*</span></label>
+                        <input ngModel type="text" class="form-control" id="phoneNumber" placeholder="Enter your phone" name="phoneNumber" required>
+                    </div>
+                    <div class="mb-3 mt-3 form-group">
+                        <label for="password" class="form-label">Password <span style="color:red ;">*</span></label>
+                        <input ngModel type="password" class="form-control" id="password" placeholder="Enter your password" name="password" required>
+                    </div>
+                    
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="cancel" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" type="submit" [disabled]="userform.invalid"
+                        class="btn btn-primary">Add</button>
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+<section class=" p-5 text-center d-flex flex-column justify-content-between">
+
+    <button type="button" hidden class="btn btn-primary" id="showuser" data-bs-toggle="modal"
+        data-bs-target="#exampleModal">
+
+    </button>
+
+
+    <section class=" p-5 text-center">
+
+        <div class="container-fluid ">
+            <!-- products -->
+            <h3>{{property[0].name}} ({{property[0].aliasName}})</h3>
+
+
+            <div class="row">
+                <div class="card pt-3" style="width:100%;height:100% ;">
+
+                    <!-- I will put  Carousel  for images-->
+                    <div id="demo" class="carousel slide" data-bs-ride="carousel">
+
+                        <!-- Indicators/dots -->
+                        <div class="carousel-indicators">
+                            <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
+                            <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
+                            <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
+                        </div>
+
+
+                        <!-- The slideshow/carousel -->
+                        <div class="carousel-inner" id="carousel-items">
+
+                            <div *ngFor="let image of property[0].propertyImages" class="carousel-item active">
+                                <img [src]="getImagePath(image)" alt="back" class="d-block w-100">
+                            </div>
+
+                        </div>
+
+                        <!-- Left and right controls/icons -->
+                        <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon"></span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
+                            <span class="carousel-control-next-icon"></span>
+                        </button>
+                    </div>
+
+
+
+
+
+
+                    <div class="card-body">
+                        <h4 class="card-title">Discreption</h4>
+                        <p class="card-text">
+                            {{property[0].description}}
+
+                        </p>
+
+                        <div class="container">
+                            <div class="row ">
+                                <div class="col-6">
+                                    <h4>Pick up time</h4>
+                                    <p>19:00</p>
+                                </div>
+                                <div class="col-6">
+                                    <h4> Drop off time</h4>
+                                    <p>17:00</p>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+
+
+        </div>
+
+        <div  [hidden]="alert" id="alert" class="alert alert-warning alert-dismissible  show" role="alert">
+            <h4 class="alert-heading">Thank You ! {{name}}</h4>
+            <p>Aww yeah, you successfully Reserve <span style="color: red">{{property[0].name}}</span> from date <span
+                    style="color: red">{{fromDate}}</span> to : <span style="color: red">{{toDate}}</span></p>
+            <hr>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+
+        <div class="container">
+            
+            
+            <div class="row">
+                <div class="col-8 ">
+                    <div class="card">
+
+                        <form #chechForm="ngForm" (ngSubmit)="checkAvailabilty(chechForm)">
+                            <div class="row mb-7">
+                                <div class="col-md-5" style="margin-left: 10px;">
+                                    <div class="form-floating mb-3">
+                                        <input type="date" class="form-control" id="fromDate" (change)="getdiffer()"
+                                            name="fromDate" [(ngModel)]="fromDate" ngModel required>
+                                        <label for="floatingInput">from date</label>
+                                        <div class="valid-feedback">Valid.</div>
+                                        <div class="invalid-feedback">Please fill out this field.</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-5">
+                                    <div class="form-floating mb-3">
+                                        <input type="date" class="form-control" id="fromDate" name="toDate"
+                                            (change)="getdiffer()" [(ngModel)]="toDate" ngModel required>
+                                        <label for="floatingInput">to date</label>
+                                        <div class="valid-feedback">Valid.</div>
+                                        <div class="invalid-feedback">Please fill out this field.</div>
+                                    </div>
+                                </div>
+                                <!-- <div class="col-6" style="margin: 20px;">
+
+                                    <input type="text" onclick="this.type='date'" class="form-control font" v
+                                        placeholder="To" ngModel #toDate="ngModel">
+                                </div> -->
+                                <button [disabled]="chechForm.invalid" type="submit" class="btn btn-primary "
+                                    style="margin: 20px ;width: 80%;">check Availability</button>
+
+                            </div>
+
+
+                        </form>
+
+
+
+
+                    </div>
+                    <div class="card " style="margin-top: 10px; color:violet ;" [hidden]="hiddenAvailablespan">
+                        <h1>
+                            {{availableMessage}}
+                        </h1>
+                    </div>
+
+                </div>
+                <div class="col-4 h1">
+                    <div class="card">
+                        <div class="container">
+                            <div class="row h1">
+                                <div class="col-6">
+                                    <h4>check in Date</h4>
+                                    <label>{{fromDate}}</label>
+                                </div>
+                                <div class="col-6 flex-row">
+                                    <h4> check out date</h4>
+                                    <label>{{toDate}}</label>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <h4>Days Count</h4>
+                                    <label> {{difference}}</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <h4>total cost</h4>
+                                    <label>{{price}}</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <button [disabled]="!available" (click)="reserve(chechForm)"
+                                        class="btn btn-primary " style="margin: 20px ;width: 80%;">Reserve</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </section>

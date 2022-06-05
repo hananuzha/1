@@ -1,0 +1,25 @@
+.navbar-toggler {  
+    margin-left: 90% !important;
+   
+  }
+  .nav-link {
+      font-size: medium;
+  }
+  #logo{
+      width:20px;
+  }
+  img{
+    float: left;
+    display: inline-block;
+    width: 60px;
+
+}
+.nav-item{
+margin-left: 20px;
+}
+nav{
+   margin-bottom: 0;
+}
+.collapse{
+    margin-right: 30%;
+}

@@ -1,9 +1,18 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ProductComponent } from './product/product.component';
+import { AppComponent } from './app.component';
+import { LoginComponent } from './data/components/login/login.component';
+import { ProductComponent } from './data/components/product/product.component';
+import { PropertyDetailsComponent } from './data/components/property-details/property-details.component';
+import { PropertyComponent } from './data/components/property/property.component';
+import { RegisterComponent } from './data/components/register/register.component';
 
 const routes: Routes = [
-  { path: 'product', component: ProductComponent }
+  { path: 'property', component: PropertyComponent },
+  { path: 'product', component: ProductComponent },
+  { path: 'property/:id', component:  PropertyDetailsComponent },
+  { path: 'regsiter', component:  RegisterComponent },
+  { path: 'login', component:  LoginComponent }
 ];
 
 @NgModule({
@@ -12,5 +21,8 @@ const routes: Routes = [
 })
 export class AppRoutingModule { }
 export const routingComponent =[
-  ProductComponent
+  ProductComponent,
+  PropertyComponent,
+  RegisterComponent,
+  PropertyDetailsComponent
 ]

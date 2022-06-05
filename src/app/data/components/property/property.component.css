@@ -1,0 +1,64 @@
+.card-body{
+    text-align: left    ;
+    font-family: 'Cairo', sans-serif;
+    font-size: 18px;
+    
+}
+h4,h6{
+    font-family: 'Oxanium';   font-size: 24px;
+
+}
+.property-features{
+    display: flex;
+}
+.img-fluid {
+    width: 100%;
+    height: 400px;
+}
+h2{
+    padding: 175px;
+    color: white;
+    font-size: 48px;
+    font-family: 'Oxanium', cursive;
+    font-weight: 300;
+}
+.footer-copyright
+{
+color: var(--main-color);
+opacity: .9;
+font-size: 12px;
+font-weight: 500;
+text-align: center;
+}
+.search{
+    width: 90%;
+    margin-right: 5%;
+    margin-left: 5%;
+    border-radius: 4px;
+    background: #fff;
+    height: 115px;
+    box-shadow: 2px 15px 30px rgb(0 0 0 / 10%);
+    z-index: 9;
+    display: flex;
+}
+.container-search{
+    align-self: center; 
+    height: 100%;
+    color: #8f8fa8;
+    box-sizing: border-box;
+   
+}
+.font{
+    text-align:left ;
+     font-size: 20px;
+     padding-top: 1%;
+}
+body {
+    background: url('../../../../assets/img/home.jpeg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+    height: 500px;
+    margin-bottom: 20px;
+  }
