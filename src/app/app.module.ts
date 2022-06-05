@@ -13,6 +13,7 @@ import { ExternalService } from './data/services/externalService/external.servic
 import { PropertyDetailsComponent } from './data/components/property-details/property-details.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { LoginComponent } from './data/components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     ProductComponent,
     PropertyComponent,
     PropertyDetailsComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

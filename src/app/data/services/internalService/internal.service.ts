@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import Property from '../../models/property';
 import PropertyImage from '../../models/PropertyImage';
-import User from '../../models/user';
+import User from '../../models/userProfile';
 import { HttpParams } from '@angular/common/http';
 import PropertySceduale from '../../models/propertyscheduale';
 

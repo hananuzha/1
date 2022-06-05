@@ -1,6 +1,6 @@
 import Address from "./address";
 
-export default interface User{
+export default interface userProfile{
     id?:number
     name:string;
     phone:string;

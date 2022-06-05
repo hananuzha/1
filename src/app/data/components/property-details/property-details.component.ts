@@ -9,6 +9,7 @@ import Address from '../../models/address';
 import PropertySceduale from '../../models/propertyscheduale';
 import { ExternalService } from '../../services/externalService/external.service';
 import { InternalService } from '../../services/internalService/internal.service';
+import AuthToken from '../../models/authToken';
 
 @Component({
   selector: 'app-property-details',
@@ -17,12 +18,13 @@ import { InternalService } from '../../services/internalService/internal.service
 })
 export class PropertyDetailsComponent implements OnInit {
   title = 'FirstAngulor';
-   name = localStorage.getItem("username")
-   phone = localStorage.getItem("phone")
+  name = localStorage.getItem("username")
+  phone = localStorage.getItem("phone")
+  token = localStorage.getItem("token")
   fromDate: string = '';
   toDate: string = '';
   difference: number = 0
-  alert=true;
+  alert = true;
   cost: number = 0
   property: Property[] = [];
   propertySceduale: PropertySceduale[] = [];
@@ -30,13 +32,13 @@ export class PropertyDetailsComponent implements OnInit {
   available = false
   hiddenAvailablespan = true;
   availableMessage = ""
-   address: Address = {
+  address: Address = {
     buildingNumber: 12,
     city: "carmel",
     id: 1,
     street: "clark st"
   }
-  form?:NgForm;
+  form?: NgForm;
   constructor(private internalServcie: InternalService, private externalService: ExternalService) { }
 
 
@@ -110,7 +112,7 @@ export class PropertyDetailsComponent implements OnInit {
   }
 
   getScheduale(form: NgForm) {
-    this.form=form;
+    this.form = form;
 
     this.internalServcie.getSchedule(this.fromDate.substring(0, 4), this.fromDate?.substring(5, 7), this.property[0].id).subscribe(
       (response) => {
@@ -143,38 +145,61 @@ export class PropertyDetailsComponent implements OnInit {
     }
   }
 
-  adduser(form1:NgForm){
-    console.log("add user clicked ")
-    localStorage.setItem("username",form1.controls["name"].value)
-    localStorage.setItem("phone",form1.controls["phone"].value)
-    const button =document.getElementById("cancel")
+  adduser(form1: NgForm) {
+    console.log(form1.control.value)
+
+    this.externalService.login(form1.value).subscribe(
+      (response: AuthToken) => {
+        console.log(response.userProfile)
+        let jsonObject = JSON.parse(JSON.stringify(response.userProfile));
+        console.log(jsonObject["name"])
+        if (response.token) {
+          this.token = response.token
+          this.name=jsonObject["name"];
+          this.phone=jsonObject["phone"]
+          localStorage.setItem("username", jsonObject["name"])
+          localStorage.setItem("phone", jsonObject["phone"])
+          localStorage.setItem("token", response.token)
+        }
+        else {
+          alert(response.message)
+
+        }
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
+
+
+    const button = document.getElementById("cancel")
     button?.click()
-  
+
   }
   reserve(form: NgForm) {
-    
 
-    if (!this.name && !this.phone)
-    {
-      const button =document.getElementById("showuser")
+
+    if (!this.token) {
+      const button = document.getElementById("showuser")
       button?.click()
-      
+
 
     }
-else
-this.doReserve(form)
-   
+    else{
+      console.log("userinside")
+      this.doReserve(form)
+    }
   }
 
-  doReserve(form:NgForm){
-    if(this.phone && this.name){
-      this.externalService.addReservation(this.fromDate, this.toDate, this.property[0].id, this.phone, { "userName": this.name, "address": this.address}).subscribe(
+  doReserve(form: NgForm) {
+    if (this.phone && this.name && this.token) {
+      this.externalService.addReservation(this.fromDate, this.toDate, this.property[0].id, this.phone, { "userName": this.name, "address": this.address }).subscribe(
         (response) => {
           console.log("resercvved succesfully  is " + response)
-          
-         this.alert=false;
 
-          
+          this.alert = false;
+
+
           this.hiddenAvailablespan = true
           this.price = 0
           this.available = true
@@ -182,7 +207,7 @@ this.doReserve(form)
         }
 
       )
-   }
+    }
   }
 
 }

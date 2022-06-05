@@ -2,6 +2,8 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import AuthToken from '../../models/authToken';
+import loginRequest from '../../models/loginRequest';
 import Property from '../../models/property';
 import PropertyImage from '../../models/PropertyImage';
 import ReservationObject from '../../models/reservationObject';
@@ -16,8 +18,11 @@ export class ExternalService {
   constructor(private http : HttpClient) { }
 
 
- 
- 
+       
+   login (loginRequest:loginRequest): Observable<AuthToken>{
+    return this.http.post<AuthToken>(`${this.restUrl}/login`,loginRequest)
+    
+   }
   
    getProperty (): Observable<Property[]>{
     return this.http.get<Property[]>(`${this.restUrl}/property`)

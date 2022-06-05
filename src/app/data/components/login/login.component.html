@@ -1,0 +1,26 @@
+
+<section class=" p-5 text-center min-vh-100 d-flex flex-column justify-content-between">
+    <div class="card mb-3">
+
+
+<form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+    
+  
+   
+    <div class="mb-3 mt-3 form-group">
+        <label for="phoneNumber" class="form-label">Phone<span style="color:red ;">*</span></label>
+        <input ngModel type="text" class="form-control" id="phoneNumber" placeholder="Enter your phone" name="phoneNumber" required>
+    </div>
+    <div class="mb-3 mt-3 form-group">
+        <label for="password" class="form-label">Password <span style="color:red ;">*</span></label>
+        <input ngModel type="password" class="form-control" id="password" placeholder="Enter your password" name="password" required>
+    </div>
+    
+    
+    <button [disabled]="loginForm.invalid" type="submit" class="btn btn-primary">login</button>
+</form>
+
+
+
+    </div>
+</section>
